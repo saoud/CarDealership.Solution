@@ -1,163 +1,35 @@
+# Car Dealership
 
-These setup instructions follow **Week 1**, Test-Driven Development with C# from Epicodus's [C# and .Net curriculum](https://www.learnhowtoprogram.com/c-and-net)
+#### Learning project for Epicodus course. C# web application for a Car Dealership
+#### By Saoud Rana
 
-Setting up project from scratch
+## Technologies Used
 
-[MSTest Configuration and Setup](https://www.learnhowtoprogram.com/c-and-net/test-driven-development-with-c/mstest-configuration-and-setup)
+* C#
+* .NET 5 SDK
+* ASP.NET Core MVC
 
-After running `dotnet restore` and generating `obj` directories. In root directory:
-    `touch .gitignore` and add to file `*/obj/`
+## Description
 
-[MSTest Writing and Running Tests](https://www.learnhowtoprogram.com/c-and-net/test-driven-development-with-c/mstest-writing-and-running-tests)
+A learning project made for the Epicodus programming course to practice writing C# web applications with ASP.NET Core MVC. Displays a Car Dealership website.
 
-After setup, navigate to TDDcsharp.Tests and run `dotnet test`
-Tests will pass, even without testing code, because it didn't receive any compiler errors.
+## Setup/Installation Requirements
 
-add `*/bin/` to .gitignore. Generated after running dotnet test
+To install locally:
+* Install git
+* Install the [.NET 5 SDK](https://dotnet.microsoft.com/download/dotnet/5.0)
+* Use _git clone_ to download this repository to a local directory
+* Navigate to this local directory in your terminal
+* Navigate to the _/CarDealership_ folder in your terminal
+* Enter _dotnet run_ to build and run the program
+* The terminal will output that it is "Now listening on" a certain URL. For me this is _http://localhost:5000_, but it could be different.
+* Navigate in your web browser to whatever URL is displayed. This will show the home page.
 
-[Our First Tests with MSTest](https://www.learnhowtoprogram.com/c-and-net/test-driven-development-with-c/our-first-tests-with-mstest)
+## Known Bugs
 
-Following "Red, Green, Refactor" Workflow, test for isCar was added in this order:
+None.
 
-1. Identify the simplest possible behavior the program must exhibit"
-
-```csharp
-my notes: "If string equals "car" return boolean true"
-```
-
-2. Write a coded test
-
-ModelTests/CarDealership.cs
-Note: Typo from previous commit. Change "public class CarDealership" to "public class CarDealershipTest
-```csharp
-    [TestClass]
-    public class CarDealershipTests
-    {
-        [TestMethod]
-        public void isCar_StringEqualCar_True()
-        {
-            CarDealership testCarDealership = new CarDealership();
-            Assert.AreEqual(true, testCarDealership.isCar("car"));
-        }
-    }
-```
-
-
-TDDcsharp/Models/CarDealership.cs 
-(Nothing has changed. No code added yet)
-```csharp
-    public class CarDealership
-    {
-        public bool isCar(string car)
-        {
-            return false;
-        }
-    }
-```
-
-3. Confirm Test Fails
-
-Navigate to TDDcsharp.Tests and run `dotnet test`
-test should fail - this is a good fail - Expected:<True>. Actual:<False>
-a compiler error is not a fail.
-
-4. Implement the behavior with the least amount of code possible
-
-TDDcsharp/Models/TDD.cs 
-```csharp
-    public class CarDealership
-    {
-        public bool isCar(string car)
-        {
-            return car == "car";
-        }
-    }
-```
-
-5. Confirm the test passes
-
-Navigate to TDDchsarp.Tests and run `dotnet test`
-
-6. Confirm previous tests still pass
-    N/A no previous tests at the moment so moving on.
-
-7. Check for refactoring
-    Looks as DRY as it can be at the moment. Moving on.
-
-8. Repeat
-    There is probably more that we could use to define a car. Such as, "4 wheels", "steering wheel", "brakes"
-
-1. Identify the simplest possible behavior the program must exhibit"
-
-```csharp
-my notes: 
-"If string equals "car" return boolean true"
-"Other things makeup a car. If strings equals any of "car", "4 wheels", "steering wheel", "brakes" return boolean true
-```
-2. Write a coded test
-
-ModelTests/CarDealership.cs
-```csharp
-    [TestClass]
-    public class CarDealershipTests
-    {
-        [TestMethod]
-        public void isCar_StringEqualCar_True()
-        {
-            CarDealership testCarDealership = new CarDealership();
-            Assert.AreEqual(true, testCarDealership.isCar("car"));
-        }
-
-        [TestMethod]
-        public void isCar_StringNotEqualCarThings_False()
-        {
-            CarDealership testCarDealership = new CarDealership();
-            Assert.AreEqual(false, testCarDealership.isCar("horse"));
-        }
-    }
-```
-
-3. Confirm test fails
-    yes it does "car does not equal "horse"
-
-4. Implement the behavior with the least amount of code possible
-
-```csharp
-    public class CarDealership
-    {
-        public bool isCar(string car)
-        {
-            string[] whatIsCarArray = {"car", "4 wheels", "brakes", "steering wheel"};
-            
-            foreach (string carThing in whatIsCarArray)
-            {
-                if(car == carThing)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-```
-
-5. Confirm the test passes
-
-Navigate to TDDchsarp.Tests and run `dotnet test`
-
-6. Confirm previous tests still pass
-    `isCar_StringEqualCar_True()`
-    changed name to `isChar_StringEqualCarThing_True()`
-    test too with other things that should be true like "4 wheels"
-    run test again
-    confirm passes
-
-7. Check for refactoring
-    Looks Dry but perhaps a way to loop over the first test so I don't have to add each thing at a time to test or repeat myself with lots of tests. Will leave as is for now since the array of things that define a car is fixed and confident if one string works then the rest will work
-
-8. Repeat
-    What else can go in my car dealership?
-
+## License
     ## License
 * [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/saoud/csharp-TDD-template/blob/main/LICENSE)
 * Copyright 2021 Saoud Rana
